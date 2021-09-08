@@ -1,0 +1,61 @@
+basePath: /
+definitions:
+  main.Order:
+    properties:
+      customerName:
+        type: string
+      items:
+        type: string
+      orderId:
+        type: string
+      orderedAt:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Just learning to create REST api with Go
+  title: Orders API
+  version: "1.0"
+paths:
+  /orders:
+    get:
+      consumes:
+      - application/json
+      description: Get Details of all orders
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Order'
+            type: array
+      summary: Get details of all orders
+      tags:
+      - orders
+    post:
+      consumes:
+      - application/json
+      description: Create a new order with the input paylod
+      parameters:
+      - description: Create order
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/main.Order'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Order'
+            type: array
+      summary: Create a new order
+      tags:
+      - orders
+swagger: "2.0"
